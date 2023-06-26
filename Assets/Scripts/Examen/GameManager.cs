@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //  Variable estática del gamaManager
     public static GameManager instance;
 
     public string txtName = "puntos.txt";
@@ -13,7 +15,9 @@ public class GameManager : MonoBehaviour
 
     private int puntos;
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     private void Awake()
     {
         if (instance == null)
@@ -40,5 +44,10 @@ public class GameManager : MonoBehaviour
         {
             writer.Write(puntos.ToString());
         }
+    }
+
+    public void CambiaEscena(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }

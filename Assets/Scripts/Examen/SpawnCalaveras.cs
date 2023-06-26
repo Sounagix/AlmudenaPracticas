@@ -14,15 +14,29 @@ public class SpawnCalaveras : MonoBehaviour
 
     private void Update()
     {
-        print(totalTargets.Count);
-
         if (Input.anyKey)
         {
             if (Input.GetKeyDown(actionKey))
             {
-                Spawn();
+                StartCoroutine(SpawnTargets());
             }
         }
+    }
+
+    private IEnumerator SpawnTargets()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            float t = Random.Range(1.0f, 2.0f);
+            StartCoroutine(WaitTime(t));
+        }
+        yield return null;
+    }
+
+    private IEnumerator WaitTime(float _t)
+    {
+        yield return new WaitForSecondsRealtime(_t);
+        Spawn();
     }
 
     private void Spawn()
